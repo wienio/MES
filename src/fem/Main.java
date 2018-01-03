@@ -16,6 +16,8 @@ public class Main {
 
     public static void main(String[] args) {
         GlobalData data = readConfiguration();
+        Grid grid = new Grid(data);
+        grid.printElements(1);
     }
 
     private static GlobalData readConfiguration() {
