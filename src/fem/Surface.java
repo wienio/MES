@@ -1,26 +1,24 @@
 package fem;
 
-import main.Node;
-
 /**
  * Created by Wienio on 2018-01-03.
  */
 public class Surface {
 
-    private Node[] ID;
+    private Node[] nodes;
 
     public Surface(Node node1, Node node2) {
-        ID = new Node[2];
-        ID[0] = node1;
-        ID[1] = node2;
+        nodes = new Node[2];
+        nodes[0] = node1;
+        nodes[1] = node2;
     }
 
-    public Node[] getID() {
-        return ID;
+    public Node[] getNodes() {
+        return nodes;
     }
 
-    public void setID(Node[] ID) {
-        this.ID = ID;
+    public void setNodes(Node[] nodes) {
+        this.nodes = nodes;
     }
 
 }

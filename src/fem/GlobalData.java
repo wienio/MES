@@ -1,13 +1,7 @@
 package fem;
 
-import org.apache.log4j.Logger;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.io.File;
 
 /**
  * Created by Wienio on 2017-10-28.
@@ -16,28 +10,11 @@ import java.io.File;
 @XmlRootElement
 public class GlobalData {
 
-    private static Logger log = Logger.getLogger(GlobalData.class);
+    // TODO dokonczyc ta klase
 
     private double H, B, temperatureStart, time, deltaTime, temperature, alfa, cw, k, density;
     private int nH, nB;
     private int ne, nh; // liczba elementów i liczba węzłów
-
-    public GlobalData readConfiguration() {
-        try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(GlobalData.class);
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            GlobalData data = (GlobalData) jaxbUnmarshaller.unmarshal(new File("C:\\Users\\Wienio\\IdeaProjects\\MES\\resources\\data.xml"));
-            data.setNe((data.getnH() - 1) * (data.getnB() - 1));
-            data.setNh(data.getnH() * data.getnB());
-
-
-            // TODO dokonczyc
-            return data;
-        } catch (JAXBException e) {
-            log.error("Can't read data,xml file with Global Data", e);
-        }
-        return null;
-    }
 
     public double getH() {
         return H;
