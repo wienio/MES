@@ -43,10 +43,10 @@ public class LinearTest {
             B[i] = in.nextDouble();
         }
 
-        LinearEquations equations = new LinearEquations(A, B);
-        double[] result = equations.gaussEliminationMethod(size, A, B);
+        LinearEquations equations = new LinearEquations(A, B, size);
+        double[] result = equations.gaussEliminationMethod();
         System.out.println("Result of Gauss elimination method: " + Arrays.toString(result));
-        result = equations.jacobyMethod(size);
+        result = equations.jacobyMethod();
         System.out.println("Result of Jacoby method: " + Arrays.toString(result));
     }
 

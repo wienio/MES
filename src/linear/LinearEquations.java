@@ -14,13 +14,15 @@ public class LinearEquations {
 
     private double[][] A;
     private double[] B;
+    private int size;
 
-    public LinearEquations(double[][] A, double[] B) {
+    public LinearEquations(double[][] A, double[] B, int size) {
         this.A = A;
         this.B = B;
+        this.size = size;
     }
 
-    public double[] jacobyMethod(int size) {
+    public double[] jacobyMethod() {
         double[][] M = new double[size][size];
         double[] N = new double[size];
         double[] x1 = new double[size];
@@ -53,19 +55,19 @@ public class LinearEquations {
         return x1;
     }
 
-    public double[] gaussEliminationMethod(int size, double[][] matrix, double[] vector) {
+    public double[] gaussEliminationMethod() {
         double[] result = new double[size];
         double[][] U = new double[size][size + 1];
 
 
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
-                U[j][i] = matrix[j][i];
+                U[j][i] = A[j][i];
             }
         }
 
         for (int i = 0; i < size; ++i) {
-            U[i][size] = vector[i];
+            U[i][size] = B[i];
         }
 
         for (int i = 0; i < size - 1; ++i) {
