@@ -1,8 +1,8 @@
 <globalData>
-    <H>532</H>                                  <!-- Wysokosc przekroju w m -->
-    <B>565765</B>                               <!-- Szerokość przekroju w m -->
-    <nH>25</nH>                                 <!-- Liczba węzłów (wysokość) -->
-    <nB>190</nB>                                <!-- Liczba węzłów (szerokość) -->
+    <H>0.1</H>                                  <!-- Wysokosc przekroju w m -->
+    <B>0.1</B>                               <!-- Szerokość przekroju w m -->
+    <nH>5</nH>                                 <!-- Liczba węzłów (wysokość) -->
+    <nB>5</nB>                                <!-- Liczba węzłów (szerokość) -->
     <temperatureStart>100</temperatureStart>    <!-- Temperatura początkowa -->
     <time>3600</time>                           <!-- Czas procesu -->
     <deltaTime>1</deltaTime>                    <!-- Krok czasu w sek -->
