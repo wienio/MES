@@ -24,15 +24,15 @@ public class LocalElement {
             shapesFunction[i][2] = ShapeFunctions.N3(GaussIntegralCoords.gaussNodesCoords[i].getKsi(), GaussIntegralCoords.gaussNodesCoords[i].getEta());
             shapesFunction[i][3] = ShapeFunctions.N4(GaussIntegralCoords.gaussNodesCoords[i].getKsi(), GaussIntegralCoords.gaussNodesCoords[i].getEta());
 
-            dN_Eta[i][0] = ShapeFunctions.dN1_Eta(GaussIntegralCoords.gaussNodesCoords[i].getEta());
-            dN_Eta[i][1] = ShapeFunctions.dN2_Eta(GaussIntegralCoords.gaussNodesCoords[i].getEta());
-            dN_Eta[i][2] = ShapeFunctions.dN3_Eta(GaussIntegralCoords.gaussNodesCoords[i].getEta());
-            dN_Eta[i][3] = ShapeFunctions.dN4_Eta(GaussIntegralCoords.gaussNodesCoords[i].getEta());
+            dN_Ksi[i][0] = ShapeFunctions.dN1_Ksi(GaussIntegralCoords.gaussNodesCoords[i].getEta(), GaussIntegralCoords.gaussNodesCoords[i].getEta());
+            dN_Ksi[i][1] = ShapeFunctions.dN2_Ksi(GaussIntegralCoords.gaussNodesCoords[i].getEta(), GaussIntegralCoords.gaussNodesCoords[i].getEta());
+            dN_Ksi[i][2] = ShapeFunctions.dN3_Ksi(GaussIntegralCoords.gaussNodesCoords[i].getEta(), GaussIntegralCoords.gaussNodesCoords[i].getEta());
+            dN_Ksi[i][3] = ShapeFunctions.dN4_Ksi(GaussIntegralCoords.gaussNodesCoords[i].getEta(), GaussIntegralCoords.gaussNodesCoords[i].getEta());
 
-            dN_Ksi[i][0] = ShapeFunctions.dN1_Ksi(GaussIntegralCoords.gaussNodesCoords[i].getKsi());
-            dN_Ksi[i][1] = ShapeFunctions.dN2_Ksi(GaussIntegralCoords.gaussNodesCoords[i].getKsi());
-            dN_Ksi[i][2] = ShapeFunctions.dN3_Ksi(GaussIntegralCoords.gaussNodesCoords[i].getKsi());
-            dN_Ksi[i][3] = ShapeFunctions.dN4_Ksi(GaussIntegralCoords.gaussNodesCoords[i].getKsi());
+            dN_Eta[i][0] = ShapeFunctions.dN1_Eta(GaussIntegralCoords.gaussNodesCoords[i].getKsi(), GaussIntegralCoords.gaussNodesCoords[i].getEta());
+            dN_Eta[i][1] = ShapeFunctions.dN2_Eta(GaussIntegralCoords.gaussNodesCoords[i].getKsi(), GaussIntegralCoords.gaussNodesCoords[i].getEta());
+            dN_Eta[i][2] = ShapeFunctions.dN3_Eta(GaussIntegralCoords.gaussNodesCoords[i].getKsi(), GaussIntegralCoords.gaussNodesCoords[i].getEta());
+            dN_Eta[i][3] = ShapeFunctions.dN4_Eta(GaussIntegralCoords.gaussNodesCoords[i].getKsi(), GaussIntegralCoords.gaussNodesCoords[i].getEta());
 
         }
 

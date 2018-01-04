@@ -9,7 +9,7 @@ public class GaussIntegralCoords {
             new LocalNode(-1 / Math.sqrt(3), -1 / Math.sqrt(3)),
             new LocalNode(1 / Math.sqrt(3), -1 / Math.sqrt(3)),
             new LocalNode(1 / Math.sqrt(3), 1 / Math.sqrt(3)),
-            new LocalNode(-1 / Math.sqrt(3), -1 / Math.sqrt(3))
+            new LocalNode(-1 / Math.sqrt(3), 1 / Math.sqrt(3))
     };
 
     public static final LocalSurface[] gaussSurfaceCoords = {

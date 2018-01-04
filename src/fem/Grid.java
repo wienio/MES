@@ -14,8 +14,6 @@ public class Grid {
     private Element[] elements;
     private GlobalData globalData;
 
-    public static Grid grid = null;
-
     public Grid(GlobalData globalData) {
         this.globalData = globalData;
 
@@ -36,8 +34,8 @@ public class Grid {
                 List<Node> nodeList = new ArrayList<>();
                 nodeList.add(nodes[globalData.getnH() * i + j]);
                 nodeList.add(nodes[globalData.getnH() * (i + 1) + j]);
-                nodeList.add(nodes[globalData.getnH() * i + j + 1]);
-                nodeList.add(nodes[globalData.getnH() * (i + 1) + j + 1]);
+                nodeList.add(nodes[globalData.getnH() * (i+1) + (j + 1)]);
+                nodeList.add(nodes[globalData.getnH() * i + (j + 1)]);
 
                 elements[counter] = new Element(i, j, nodeList.toArray(new Node[nodeList.size()]), globalData);
                 ++counter;

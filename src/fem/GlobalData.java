@@ -19,12 +19,9 @@ public class GlobalData {
     private Data data;
 
     public void compute(Grid grid) {
-//        data = new Data(4, nh);
 
         fill2Dtab(0, data.getH_global());
         fill1Dtab(0, data.getP_global());
-
-//        Grid grid = new Grid(this);
 
         double[] dndx = new double[4];
         double[] dndy = new double[4];
@@ -48,7 +45,7 @@ public class GlobalData {
             double t0 = 0;
             for (int point = 0; point < 4; ++point) {
                 Jacoby jacoby = new Jacoby(point, x, y);
-
+                t0 = 0;
                 for (int i = 0; i < 4; ++i) {
                     dndx[i] = 1 / jacoby.getDet() * (jacoby.getInvertedMatrix()[0][0] * data.getLocalElement().getdN_Ksi()[point][i] + jacoby.getInvertedMatrix()[0][1] * data.getLocalElement().getdN_Eta()[point][i]);
                     dndy[i] = 1 / jacoby.getDet() * (jacoby.getInvertedMatrix()[1][0] * data.getLocalElement().getdN_Ksi()[point][i] + jacoby.getInvertedMatrix()[1][1] * data.getLocalElement().getdN_Eta()[point][i]);
@@ -60,48 +57,52 @@ public class GlobalData {
                 for (int i = 0; i < 4; ++i) {
                     for (int j = 0; j < 4; ++j) {
                         double cij = cw * density * data.getLocalElement().getShapesFunction()[point][i] * data.getLocalElement().getShapesFunction()[point][j] * det;
+//                        System.out.println("Cij: " + cij);
                         data.getH_current()[i][j] += k * (dndx[i] * dndx[j] + dndy[i] * dndy[j]) * det + cij / deltaTime;
+//                        System.out.println("P_curr before:" + data.getP_current()[i]);
                         data.getP_current()[i] += cij / deltaTime * t0;
+//                        System.out.println("P_curr: after:" + data.getP_current()[i]);
                     }
                 }
+            }
 
-                for (int i = 0; i < grid.getElements()[element].getSurfaceAround(); ++i) {
-                    id = grid.getElements()[element].getSurfaceNumber()[i];
-                    switch (id) {
-                        case 0:
-                            det = Math.sqrt(Math.pow(grid.getElements()[element].getNode()[3].getX() - grid.getElements()[element].getNode()[0].getX(), 2) + Math.pow(grid.getElements()[element].getNode()[3].getY() - grid.getElements()[element].getNode()[0].getY(), 2)) / 2.0;
-                            break;
-                        case 1:
-                            det = Math.sqrt(Math.pow(grid.getElements()[element].getNode()[0].getX() - grid.getElements()[element].getNode()[1].getX(), 2) + Math.pow(grid.getElements()[element].getNode()[0].getY() - grid.getElements()[element].getNode()[1].getY(), 2)) / 2.0;
-                            break;
-                        case 2:
-                            det = Math.sqrt(Math.pow(grid.getElements()[element].getNode()[1].getX() - grid.getElements()[element].getNode()[2].getX(), 2) + Math.pow(grid.getElements()[element].getNode()[1].getY() - grid.getElements()[element].getNode()[2].getY(), 2)) / 2.0;
-                            break;
-                        case 3:
-                            det = Math.sqrt(Math.pow(grid.getElements()[element].getNode()[2].getX() - grid.getElements()[element].getNode()[3].getX(), 2) + Math.pow(grid.getElements()[element].getNode()[2].getY() - grid.getElements()[element].getNode()[3].getY(), 2)) / 2.0;
-                            break;
-                    }
-
-                    for (int p = 0; p < 2; ++p) {
-                        for (int j = 0; j < 4; ++j) {
-                            for (int k = 0; k < 4; ++k) {
-                                data.getH_current()[j][k] += alfa * GaussIntegralCoords.gaussSurfaceCoords[id].getShapesFunc()[p][j] * GaussIntegralCoords.gaussSurfaceCoords[id].getShapesFunc()[p][k] * det;
-                            }
-                            data.getP_current()[j] += alfa * temperature * GaussIntegralCoords.gaussSurfaceCoords[id].getShapesFunc()[p][j] * det;
-                        }
-                    }
+            for (int i = 0; i < grid.getElements()[element].getSurfaceAround(); ++i) {
+                id = grid.getElements()[element].getSurfaceNumber()[i];
+                switch (id) {
+                    case 0:
+                        det = Math.sqrt(Math.pow(grid.getElements()[element].getNode()[3].getX() - grid.getElements()[element].getNode()[0].getX(), 2) + Math.pow(grid.getElements()[element].getNode()[3].getY() - grid.getElements()[element].getNode()[0].getY(), 2)) / 2.0;
+                        break;
+                    case 1:
+                        det = Math.sqrt(Math.pow(grid.getElements()[element].getNode()[0].getX() - grid.getElements()[element].getNode()[1].getX(), 2) + Math.pow(grid.getElements()[element].getNode()[0].getY() - grid.getElements()[element].getNode()[1].getY(), 2)) / 2.0;
+                        break;
+                    case 2:
+                        det = Math.sqrt(Math.pow(grid.getElements()[element].getNode()[1].getX() - grid.getElements()[element].getNode()[2].getX(), 2) + Math.pow(grid.getElements()[element].getNode()[1].getY() - grid.getElements()[element].getNode()[2].getY(), 2)) / 2.0;
+                        break;
+                    case 3:
+                        det = Math.sqrt(Math.pow(grid.getElements()[element].getNode()[2].getX() - grid.getElements()[element].getNode()[3].getX(), 2) + Math.pow(grid.getElements()[element].getNode()[2].getY() - grid.getElements()[element].getNode()[3].getY(), 2)) / 2.0;
+                        break;
                 }
 
-                // agregation
-                for (int i = 0; i < 4; ++i) {
+                for (int p = 0; p < 2; ++p) {
                     for (int j = 0; j < 4; ++j) {
-                        data.getH_global()[grid.getElements()[element].getGlobalNodeId()[i]][grid.getElements()[element].getGlobalNodeId()[j]] += data.getH_current()[i][j];
+                        for (int k = 0; k < 4; ++k) {
+                            data.getH_current()[j][k] += alfa * GaussIntegralCoords.gaussSurfaceCoords[id].getShapesFunc()[p][j] * GaussIntegralCoords.gaussSurfaceCoords[id].getShapesFunc()[p][k] * det;
+                        }
+                        data.getP_current()[j] += alfa * temperature * GaussIntegralCoords.gaussSurfaceCoords[id].getShapesFunc()[p][j] * det;
                     }
-                    data.getP_global()[grid.getElements()[element].getGlobalNodeId()[i]] += data.getP_current()[i];
                 }
+            }
+
+            // agregation
+            for (int i = 0; i < 4; ++i) {
+                for (int j = 0; j < 4; ++j) {
+                    data.getH_global()[grid.getElements()[element].getGlobalNodeId()[i]][grid.getElements()[element].getGlobalNodeId()[j]] += data.getH_current()[i][j];
+                }
+                data.getP_global()[grid.getElements()[element].getGlobalNodeId()[i]] += data.getP_current()[i];
             }
         }
     }
+
 
     public double getH() {
         return H;
