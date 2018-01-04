@@ -57,11 +57,8 @@ public class GlobalData {
                 for (int i = 0; i < 4; ++i) {
                     for (int j = 0; j < 4; ++j) {
                         double cij = cw * density * data.getLocalElement().getShapesFunction()[point][i] * data.getLocalElement().getShapesFunction()[point][j] * det;
-//                        System.out.println("Cij: " + cij);
                         data.getH_current()[i][j] += k * (dndx[i] * dndx[j] + dndy[i] * dndy[j]) * det + cij / deltaTime;
-//                        System.out.println("P_curr before:" + data.getP_current()[i]);
                         data.getP_current()[i] += cij / deltaTime * t0;
-//                        System.out.println("P_curr: after:" + data.getP_current()[i]);
                     }
                 }
             }
