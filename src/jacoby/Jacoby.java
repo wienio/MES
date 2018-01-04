@@ -13,7 +13,7 @@ public class Jacoby {
     private double det;
     private int point;
 
-    private static final LocalElement localElement = LocalElement.getInstance();
+    public static final LocalElement localElement = LocalElement.getInstance();
 
     public Jacoby(int point, double[] x, double[] y) {
         this.point = point;

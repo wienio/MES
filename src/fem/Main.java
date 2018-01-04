@@ -16,8 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
         GlobalData data = readConfiguration();
-        Grid grid = new Grid(data);
-        grid.printElements(1);
+        data.compute();
     }
 
     private static GlobalData readConfiguration() {
@@ -28,8 +27,6 @@ public class Main {
             data.setNe((data.getnH() - 1) * (data.getnB() - 1));
             data.setNh(data.getnH() * data.getnB());
 
-
-            // TODO dokonczyc
             return data;
         } catch (JAXBException e) {
             log.error("Can't read data,xml file with Global Data", e);

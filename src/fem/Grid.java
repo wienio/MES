@@ -56,4 +56,11 @@ public class Grid {
         }
     }
 
+    public Node[] getNodes() {
+        return nodes;
+    }
+
+    public Element[] getElements() {
+        return elements;
+    }
 }
