@@ -37,11 +37,11 @@ public class LocalElement {
         }
 
         for (int i = 0; i < border; ++i) {
-            for (int j = 0; j < border / 2; ++j) {
+            for (int j = 0; j < 2; ++j) {
                 GaussIntegralCoords.gaussSurfaceCoords[i].getShapesFunc()[j][0] = ShapeFunctions.N1(GaussIntegralCoords.gaussSurfaceCoords[i].getNodes()[j].getKsi(), GaussIntegralCoords.gaussSurfaceCoords[i].getNodes()[j].getEta());
-                GaussIntegralCoords.gaussSurfaceCoords[i].getShapesFunc()[j][1] = ShapeFunctions.N1(GaussIntegralCoords.gaussSurfaceCoords[i].getNodes()[j].getKsi(), GaussIntegralCoords.gaussSurfaceCoords[i].getNodes()[j].getEta());
-                GaussIntegralCoords.gaussSurfaceCoords[i].getShapesFunc()[j][2] = ShapeFunctions.N1(GaussIntegralCoords.gaussSurfaceCoords[i].getNodes()[j].getKsi(), GaussIntegralCoords.gaussSurfaceCoords[i].getNodes()[j].getEta());
-                GaussIntegralCoords.gaussSurfaceCoords[i].getShapesFunc()[j][3] = ShapeFunctions.N1(GaussIntegralCoords.gaussSurfaceCoords[i].getNodes()[j].getKsi(), GaussIntegralCoords.gaussSurfaceCoords[i].getNodes()[j].getEta());
+                GaussIntegralCoords.gaussSurfaceCoords[i].getShapesFunc()[j][1] = ShapeFunctions.N2(GaussIntegralCoords.gaussSurfaceCoords[i].getNodes()[j].getKsi(), GaussIntegralCoords.gaussSurfaceCoords[i].getNodes()[j].getEta());
+                GaussIntegralCoords.gaussSurfaceCoords[i].getShapesFunc()[j][2] = ShapeFunctions.N3(GaussIntegralCoords.gaussSurfaceCoords[i].getNodes()[j].getKsi(), GaussIntegralCoords.gaussSurfaceCoords[i].getNodes()[j].getEta());
+                GaussIntegralCoords.gaussSurfaceCoords[i].getShapesFunc()[j][3] = ShapeFunctions.N4(GaussIntegralCoords.gaussSurfaceCoords[i].getNodes()[j].getKsi(), GaussIntegralCoords.gaussSurfaceCoords[i].getNodes()[j].getEta());
             }
         }
     }
