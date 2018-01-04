@@ -18,13 +18,13 @@ public class GlobalData {
     private int ne, nh; // liczba elementów i liczba węzłów
     private Data data;
 
-    public void compute() {
-        data = new Data(4, nh);
+    public void compute(Grid grid) {
+//        data = new Data(4, nh);
 
         fill2Dtab(0, data.getH_global());
         fill1Dtab(0, data.getP_global());
 
-        Grid grid = new Grid(this);
+//        Grid grid = new Grid(this);
 
         double[] dndx = new double[4];
         double[] dndy = new double[4];
@@ -101,7 +101,6 @@ public class GlobalData {
                 }
             }
         }
-
     }
 
     public double getH() {
@@ -230,6 +229,10 @@ public class GlobalData {
 
     public Data getData() {
         return data;
+    }
+
+    public void setData(Data data) {
+        this.data = data;
     }
 
     private void fill2Dtab(double value, double[][] A) {

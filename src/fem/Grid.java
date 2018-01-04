@@ -14,6 +14,8 @@ public class Grid {
     private Element[] elements;
     private GlobalData globalData;
 
+    public static Grid grid = null;
+
     public Grid(GlobalData globalData) {
         this.globalData = globalData;
 
@@ -63,4 +65,5 @@ public class Grid {
     public Element[] getElements() {
         return elements;
     }
+
 }
