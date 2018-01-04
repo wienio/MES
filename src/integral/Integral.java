@@ -8,20 +8,16 @@ import jacoby.Jacoby;
 public class Integral {
 
     private final double[] p2w = {1, 1};
-    private final double[] p2coordinates = {-0.577, 0.577};
+    private final double[] p2coordinates = {-0.577, 0.577}; // coordinates
 
     private final double[] p3w = {5.0 / 9.0, 8.0 / 9.0, 5.0 / 9.0};
-    private final double[] p3coordinates = {-0.7745, 0, 0.7455};
-
-    private double function(double x, double y) {
-        return Math.sin(x) + Math.cos(y);
-    }
+    private final double[] p3coordinates = {-0.7745, 0, 0.7455};  // coordinates
 
     public double integral2P() {
         double integral = 0;
         for (int i = 0 ; i < 2 ; ++i) {
             for (int j = 0 ; j < 2 ; ++j) {
-                integral += function(p2coordinates[i], p2coordinates[j]) * p2w[i] * p2w[j];
+                integral += Equation.function(p2coordinates[i], p2coordinates[j]) * p2w[i] * p2w[j];
             }
         }
         return  integral;
@@ -42,7 +38,7 @@ public class Integral {
         }
 
         for (int i = 0 ; i < global_X.length; ++i) {
-            integral += function(global_X[i], global_Y[i] * jacoby[i].getDet());
+            integral += Equation.function(global_X[i], global_Y[i] * jacoby[i].getDet());
         }
 
         return integral;
@@ -52,7 +48,7 @@ public class Integral {
         double integral = 0;
         for (int i = 0; i < p3w.length; ++i) {
             for (int j = 0; j < p3w.length; ++j) {
-                integral += function(p3coordinates[i], p3coordinates[j]) * p3w[i] * p3w[j];
+                integral += Equation.function(p3coordinates[i], p3coordinates[j]) * p3w[i] * p3w[j];
             }
         }
         return integral;

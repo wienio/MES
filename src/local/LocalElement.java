@@ -7,9 +7,9 @@ public class LocalElement {
 
     private final int border = 4;
 
-    private double[][] dN_Ksi;
-    private double[][] dN_Eta;
-    private double[][] shapesFunction;
+    private double[][] dN_Ksi; // shape function (ksi)
+    private double[][] dN_Eta; // shape function (eta)
+    private double[][] shapesFunction; // values of shape functions for density
 
     private static LocalElement instance = null;  // Singleton pattern
 
@@ -19,6 +19,7 @@ public class LocalElement {
         shapesFunction = new double[border][border];
 
         for (int i = 0; i < border; ++i) {
+            // fill shpae functions
             shapesFunction[i][0] = ShapeFunctions.N1(GaussIntegralCoords.gaussNodesCoords[i].getKsi(), GaussIntegralCoords.gaussNodesCoords[i].getEta());
             shapesFunction[i][1] = ShapeFunctions.N2(GaussIntegralCoords.gaussNodesCoords[i].getKsi(), GaussIntegralCoords.gaussNodesCoords[i].getEta());
             shapesFunction[i][2] = ShapeFunctions.N3(GaussIntegralCoords.gaussNodesCoords[i].getKsi(), GaussIntegralCoords.gaussNodesCoords[i].getEta());

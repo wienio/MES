@@ -6,7 +6,7 @@ package fem;
 public class Node {
 
     private double x, y, t;
-    private int status;
+    private int status; // 1 - on border, 0 - inside
 
     public Node(double x, double y, GlobalData globalData) {
         this.x = x;

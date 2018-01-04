@@ -46,8 +46,6 @@ public class LinearTest {
         LinearEquations equations = new LinearEquations(A, B, size);
         double[] result = equations.gaussEliminationMethod();
         System.out.println("Result of Gauss elimination method: " + Arrays.toString(result));
-        result = equations.jacobyMethod();
-        System.out.println("Result of Jacoby method: " + Arrays.toString(result));
     }
 
 }

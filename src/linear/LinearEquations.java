@@ -22,39 +22,6 @@ public class LinearEquations {
         this.size = size;
     }
 
-    public double[] jacobyMethod() {
-        double[][] M = new double[size][size];
-        double[] N = new double[size];
-        double[] x1 = new double[size];
-        double[] x2 = new double[size];
-
-        for (int i = 0; i < size; ++i) {
-            x1[i] = 0;
-            N[i] = 1 / A[i][i];
-        }
-
-        for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
-                if (i == j) M[i][j] = 0;
-                else M[i][j] = -(A[i][j] * N[i]);
-            }
-        }
-
-        for (int i = 0; i < iterationNumber; ++i) {
-            for (int j = 0; j < size; ++j) {
-                x2[j] = N[j] * B[j];
-                for (int k = 0; k < size; ++k) {
-                    x2[j] += M[j][k] * x1[k];
-                }
-            }
-            for (int j = 0; j < size; ++j) {
-                x1[j] = x2[j];
-            }
-        }
-
-        return x1;
-    }
-
     public double[] gaussEliminationMethod() {
         double[] result = new double[size];
         double[][] U = new double[size][size + 1];

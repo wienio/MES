@@ -10,9 +10,9 @@ public class Element {
     private Node[] node;
     private Surface[] surface;
 
-    private int surfaceAround;
-    private int[] surfaceNumber;
-    private int[] globalNodeId;
+    private int surfaceAround;  // counter of borders
+    private int[] surfaceNumber;   // numbers of contact surfaces with environment (0-4)
+    private int[] globalNodeId;     // global id's of nodes
 
     public Element(int i, int j, Node[] node, GlobalData globalData) {
         this.node = new Node[borderAmount];
