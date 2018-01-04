@@ -7,7 +7,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
-import java.util.Arrays;
 
 /**
  * Created by Wienio on 2018-01-03.
@@ -19,14 +18,15 @@ public class Main {
     public static void main(String[] args) {
         GlobalData data = readConfiguration();
         Grid grid = new Grid(data);
-        for (double i = 0; i < data.getTime(); i += data.getDeltaTime()) {
+        for (double i = 0; i <= data.getTime(); i += data.getDeltaTime()) {
             data.compute(grid);
             LinearEquations linearEquations = new LinearEquations(data.getData().getH_global(), data.getData().getP_global(), data.getNh());
             double[] result = linearEquations.gaussEliminationMethod();
-            for(int j = 0 ; j < data.getNh(); ++j) {
+            for (int j = 0; j < data.getNh(); ++j) {
                 grid.getNodes()[j].setT(result[j]);
             }
-            System.out.println(Arrays.toString(result));
+            System.out.println("Step: " + i +  " / " + data.getTime());
+            prettyPrint(result);
         }
     }
 
@@ -45,6 +45,16 @@ public class Main {
             log.error("Can't read data,xml file with Global Data", e);
         }
         return null;
+    }
+
+    private static void prettyPrint(double[] tab) {
+        for (int i = 0; i < tab.length; ++i) {
+            if (i % 5 == 0) {
+                System.out.println();
+            }
+            System.out.print(tab[i] + "   ");
+        }
+        System.out.println();
     }
 
 }
