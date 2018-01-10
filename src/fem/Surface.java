@@ -17,8 +17,4 @@ public class Surface {
         return nodes;
     }
 
-    public void setNodes(Node[] nodes) {
-        this.nodes = nodes;
-    }
-
 }

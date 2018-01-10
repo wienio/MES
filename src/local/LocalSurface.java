@@ -18,17 +18,8 @@ public class LocalSurface {
     public LocalNode[] getNodes() {
         return nodes;
     }
-
-    public void setNodes(LocalNode[] nodes) {
-        this.nodes = nodes;
-    }
-
     public double[][] getShapesFunc() {
         return shapesFunc;
-    }
-
-    public void setShapesFunc(double[][] shapesFunc) {
-        this.shapesFunc = shapesFunc;
     }
 
 }

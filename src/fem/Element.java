@@ -57,41 +57,14 @@ public class Element {
     public Node[] getNode() {
         return node;
     }
-
-    public void setNode(Node[] node) {
-        this.node = node;
-    }
-
-    public Surface[] getSurface() {
-        return surface;
-    }
-
-    public void setSurface(Surface[] surface) {
-        this.surface = surface;
-    }
-
     public int getSurfaceAround() {
         return surfaceAround;
     }
-
-    public void setSurfaceAround(int surfaceAround) {
-        this.surfaceAround = surfaceAround;
-    }
-
     public int[] getSurfaceNumber() {
         return surfaceNumber;
     }
-
-    public void setSurfaceNumber(int[] surfaceNumber) {
-        this.surfaceNumber = surfaceNumber;
-    }
-
     public int[] getGlobalNodeId() {
         return globalNodeId;
-    }
-
-    public void setGlobalNodeId(int[] globalNodeId) {
-        this.globalNodeId = globalNodeId;
     }
 
 }
