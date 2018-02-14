@@ -1,14 +1,21 @@
 <globalData>
-    <H>0.1</H>                                  <!-- Wysokosc przekroju w m -->
-    <B>0.1</B>                               <!-- Szerokość przekroju w m -->
-    <nH>5</nH>                                 <!-- Liczba węzłów (wysokość) -->
-    <nB>5</nB>                                <!-- Liczba węzłów (szerokość) -->
-    <temperatureStart>100</temperatureStart>    <!-- Temperatura początkowa -->
+    <H>0.15</H>                                 <!-- Wysokosc przekroju w m -->
+    <B>0.15</B>                               	<!-- Szerokość przekroju w m -->
+    <nH>31</nH>                                 <!-- Liczba węzłów (wysokość) -->
+    <nB>31</nB>                                	<!-- Liczba węzłów (szerokość) -->
+    <temperatureStart>14</temperatureStart>    	<!-- Temperatura początkowa -->
     <time>3600</time>                           <!-- Czas procesu -->
     <deltaTime>1</deltaTime>                    <!-- Krok czasu w sek -->
-    <temperature>1200</temperature>             <!-- Temperatura otoczenia -->
-    <alfa>300</alfa>                            <!-- Współczynnik wymiany ciepła -->
-    <cw>700</cw>                                <!-- Ciepło właściwe J/kg*C -->
-    <k>25</k>                                   <!-- Współczynnik przewodzenia ciepła W / cm^2 -->
-    <density>7800</density>                     <!-- Gęstość w kg/m3 -->
+    <temperature>-25</temperature>             	<!-- Temperatura otoczenia -->
+    <alfaleft>3.631</alfaleft>                  <!-- Współczynnik wymiany ciepła z lewej strony -->
+	<alfaright>3.70968</alfaright>              <!-- Współczynnik wymiany ciepła z prawej strony -->
+    <cwblock>840</cwblock>                      <!-- Ciepło właściwe bloczka J/(kg*C) -->
+	<cwmineral>750</cwmineral>					<!-- Ciepło właściwe wełny -->
+	<cwstyrofoam>1460</cwstyrofoam>				<!-- Ciepło właściwe styropianu -->
+    <kblock>0.21</kblock>                       <!-- Współczynnik przewodzenia ciepła bloczka W / (m*C) -->
+	<kmineral>0.035</kmineral>                  <!-- Współczynnik przewodzenia ciepła wełny -->
+	<kstyrofoam>0.043</kstyrofoam>              <!-- Współczynnik przewodzenia ciepła styropianu -->
+    <densityblock>600</densityblock>            <!-- Gęstość bloczka w kg/m3 -->
+	<densitymineral>600</densitymineral>        <!-- Gęstość bloczka w kg/m3 -->
+	<densitystyrofoam>600</densitystyrofoam>    <!-- Gęstość bloczka w kg/m3 -->
 </globalData>

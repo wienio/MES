@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class GlobalData {
 
-    private double H, B, temperatureStart, time, deltaTime, temperature, alfa, cw, k, density;
+    private double H, B, temperatureStart, time, deltaTime, temperature, alfaleft, alfaright, cwblock, cwmineral, cwstyrofoam, kblock, kmineral, kstyrofoam, densityblock, densitymineral, densitystyrofoam;
     private int nH, nB;
     private int ne, nh; // liczba elementów i liczba węzłów
     private Data data;
@@ -165,41 +165,104 @@ public class GlobalData {
     public void setTemperature(double temperature) {
         this.temperature = temperature;
     }
+	
+	public double getAlfaleft() {
+		return alfaleft;
+	}
+	
+	@XmlElement
+	public void setAlfaleft(double alfaleft) {
+		this.alfaleft=alfaleft;
+	}
+	
+	public double getAlfaright() {
+		return alfaright;
+	}
+	
+	@XmlElement
+	public void setAlfaright(double alfaright) {
+		this.alfaright=alfaright;
+	}
 
-    public double getAlfa() {
-        return alfa;
+    public double getCwblock() {
+        return cwblock;
     }
 
     @XmlElement
-    public void setAlfa(double alfa) {
-        this.alfa = alfa;
+    public void setCwblock(double cwblock) {
+        this.cwblock = cwblock;
     }
-
-    public double getCw() {
-        return cw;
-    }
-
-    @XmlElement
-    public void setCw(double cw) {
-        this.cw = cw;
-    }
-
-    public double getK() {
-        return k;
+	
+	public double getCwmineral() {
+        return cwmineral;
     }
 
     @XmlElement
-    public void setK(double k) {
-        this.k = k;
+    public void setCwmineral(double cwmineral) {
+        this.cwmineral = cwmineral;
     }
-
-    public double getDensity() {
-        return density;
+	
+	public double getCwstyrofoam() {
+        return cwstyrofoam;
     }
 
     @XmlElement
-    public void setDensity(double density) {
-        this.density = density;
+    public void setCwstyrofoam(double cwstyrofoam) {
+        this.cwstyrofoam = cwstyrofoam;
+    }
+
+    public double getKblock() {
+        return kblock;
+    }
+
+    @XmlElement
+    public void setKblock(double kblock) {
+        this.kblock = kblock;
+    }
+	
+	public double getKmineral() {
+        return kmineral;
+    }
+
+    @XmlElement
+    public void setKmineral(double kmineral) {
+        this.kmineral = kmineral;
+    }
+	
+	public double getKstyrofoam() {
+        return kstyrofoam;
+    }
+
+    @XmlElement
+    public void setKstyrofoam(double kstyrofoam) {
+        this.kstyrofoam = kstyrofoam;
+    }
+
+    public double getDensityblock() {
+        return densityblock;
+    }
+
+    @XmlElement
+    public void setDensityblock(double densityblock) {
+        this.densityblock = densityblock;
+    }
+	
+	public double getDensitymineral() {
+        return densitymineral;
+    }
+
+    @XmlElement
+    public void setDensitymineral(double densitymineral) {
+        this.densitymineral = densitymineral;
+    }
+	
+	public double getDensitystyrofoam() {
+        return densitystyrofoam;
+    }
+
+    @XmlElement
+    public void setDensitystyrofoam(double densitystyrofoam) {
+        this.densitystyrofoam = densitystyrofoam;
     }
 
     public int getNe() {
