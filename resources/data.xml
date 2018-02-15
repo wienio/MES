@@ -4,9 +4,10 @@
     <nH>31</nH>                                 <!-- Liczba węzłów (wysokość) -->
     <nB>31</nB>                                	<!-- Liczba węzłów (szerokość) -->
     <temperatureStart>14</temperatureStart>    	<!-- Temperatura początkowa -->
-    <time>3600</time>                           <!-- Czas procesu -->
-    <deltaTime>1</deltaTime>                    <!-- Krok czasu w sek -->
-    <temperature>-25</temperature>             	<!-- Temperatura otoczenia -->
+    <time>4200</time>                           <!-- Czas procesu -->
+    <deltaTime>45</deltaTime>                   <!-- Krok czasu w sek -->
+    <temperatureleft>22</temperatureleft>       <!-- Temperatura w pokoju -->
+    <temperatureright>-25</temperatureright>    <!-- Temperatura otoczenia -->
     <alfaleft>3.631</alfaleft>                  <!-- Współczynnik wymiany ciepła z lewej strony -->
 	<alfaright>3.70968</alfaright>              <!-- Współczynnik wymiany ciepła z prawej strony -->
     <cwblock>840</cwblock>                      <!-- Ciepło właściwe bloczka J/(kg*C) -->
