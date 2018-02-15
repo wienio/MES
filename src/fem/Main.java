@@ -7,6 +7,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Created by Wienio on 2018-01-03.
@@ -15,7 +18,7 @@ public class Main {
 
     private static Logger log = Logger.getLogger(Main.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         GlobalData data = readConfiguration();
         Grid grid = new Grid(data);
         for (double i = 0; i <= data.getTime(); i += data.getDeltaTime()) {
@@ -26,7 +29,7 @@ public class Main {
                 grid.getNodes()[j].setT(result[j]);
             }
             System.out.println("Step: " + i +  " / " + data.getTime());
-            prettyPrint(result);
+            prettyPrint(result, i + 45);
         }
     }
 
@@ -47,13 +50,20 @@ public class Main {
         return null;
     }
 
-    private static void prettyPrint(double[] tab) {
+    private static void prettyPrint(double[] tab, double step) throws IOException {
+        FileWriter fileWriter = new FileWriter("./wyniki/result-step" + String.valueOf(step) + "[s].txt");
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        printWriter.append("Step: " + step);
         for (int i = 0; i < tab.length; ++i) {
-            if (i % 5 == 0) {
+            if (i % 31 == 0) {
+                printWriter.append("\n");
                 System.out.println();
             }
+            printWriter.write(tab[i] + " ");
             System.out.print(tab[i] + "   ");
         }
+        printWriter.close();
+        fileWriter.close();
         System.out.println();
     }
 

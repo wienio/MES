@@ -9,7 +9,6 @@ public class LinearEquations {
 
     private static final Logger log = Logger.getLogger(LinearEquations.class);
 
-    private final int iterationNumber = 100;
     private final double e = Math.pow(10, -12);
 
     private double[][] A;
@@ -56,7 +55,7 @@ public class LinearEquations {
             for (int j = size - 1; j >= 0; --j) {
                 x -= U[i][j] * result[j];
             }
-            if(Math.abs(U[i][i]) < e) {
+            if (Math.abs(U[i][i]) < e) {
                 log.error("Can't divide by 0!");
                 break;
             }

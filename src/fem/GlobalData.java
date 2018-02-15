@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class GlobalData {
 
-    private double H, B, temperatureStart, time, deltaTime, temperature, alfaleft, alfaright, cwblock, cwmineral, cwstyrofoam, kblock, kmineral, kstyrofoam, densityblock, densitymineral, densitystyrofoam;
+    private double H, B, temperatureStart, time, deltaTime, temperatureleft, temperatureright, alfaleft, alfaright, cwblock, cwmineral, cwstyrofoam, kblock, kmineral, kstyrofoam, densityblock, densitymineral, densitystyrofoam;
     private int nH, nB;
     private int ne, nh; // liczba elementów i liczba węzłów
     private Data data;
@@ -30,6 +30,7 @@ public class GlobalData {
         double[] temp0 = new double[4];
 
         double det = 0;
+        double lastElement = -999;
         for (int element = 0; element < ne; ++element) {
             // fill
             fill2Dtab(0, data.getH_current());
@@ -54,6 +55,20 @@ public class GlobalData {
                     t0 += temp0[i] * data.getLocalElement().getShapesFunction()[point][i];
                 }
 
+                double cw, density, k;
+                if (element < 600) {
+                    cw = cwblock;
+                    density = densityblock;
+                    k = kblock;
+                } else if (element < 750) {
+                    cw = cwmineral;
+                    density = densitymineral;
+                    k = kmineral;
+                } else {
+                    cw = cwstyrofoam;
+                    density = densitystyrofoam;
+                    k = kstyrofoam;
+                }
                 det = Math.abs(jacoby.getDet()); // volume integral
                 for (int i = 0; i < 4; ++i) {
                     for (int j = 0; j < 4; ++j) {
@@ -65,14 +80,25 @@ public class GlobalData {
             }
 
             for (int i = 0; i < grid.getElements()[element].getSurfaceAround(); ++i) {
+                if (element == 0 || element == 29 || element == 899 || element == 870) {
+                    ++i;
+                }
+                if (grid.getElements()[element].getSurfaceAround() == 1 && element % 29 == 0) {
+                    lastElement = element;
+                    break;
+                }
+                if ((lastElement + 1) == element) break;
+
                 id = grid.getElements()[element].getSurfaceNumber()[i];
 
-                if(id == 0) {
+                if (id == 0) {
                     det = Math.sqrt(Math.pow(grid.getElements()[element].getNode()[id + 3].getX() - grid.getElements()[element].getNode()[id].getX(), 2) + Math.pow(grid.getElements()[element].getNode()[id + 3].getY() - grid.getElements()[element].getNode()[id].getY(), 2)) / 2.0;
                 } else {
                     det = Math.sqrt(Math.pow(grid.getElements()[element].getNode()[id - 1].getX() - grid.getElements()[element].getNode()[id].getX(), 2) + Math.pow(grid.getElements()[element].getNode()[id - 1].getY() - grid.getElements()[element].getNode()[id].getY(), 2)) / 2.0;
                 }
-                
+
+                double alfa = element < 40 ? alfaleft : alfaright;
+                double temperature = element < 40 ? temperatureleft : temperatureright;
                 for (int p = 0; p < 2; ++p) {  // surface integral
                     for (int j = 0; j < 4; ++j) {
                         for (int k = 0; k < 4; ++k) {
@@ -157,32 +183,23 @@ public class GlobalData {
         this.deltaTime = deltaTime;
     }
 
-    public double getTemperature() {
-        return temperature;
+    public double getAlfaleft() {
+        return alfaleft;
     }
 
     @XmlElement
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
+    public void setAlfaleft(double alfaleft) {
+        this.alfaleft = alfaleft;
     }
-	
-	public double getAlfaleft() {
-		return alfaleft;
-	}
-	
-	@XmlElement
-	public void setAlfaleft(double alfaleft) {
-		this.alfaleft=alfaleft;
-	}
-	
-	public double getAlfaright() {
-		return alfaright;
-	}
-	
-	@XmlElement
-	public void setAlfaright(double alfaright) {
-		this.alfaright=alfaright;
-	}
+
+    public double getAlfaright() {
+        return alfaright;
+    }
+
+    @XmlElement
+    public void setAlfaright(double alfaright) {
+        this.alfaright = alfaright;
+    }
 
     public double getCwblock() {
         return cwblock;
@@ -192,8 +209,8 @@ public class GlobalData {
     public void setCwblock(double cwblock) {
         this.cwblock = cwblock;
     }
-	
-	public double getCwmineral() {
+
+    public double getCwmineral() {
         return cwmineral;
     }
 
@@ -201,8 +218,8 @@ public class GlobalData {
     public void setCwmineral(double cwmineral) {
         this.cwmineral = cwmineral;
     }
-	
-	public double getCwstyrofoam() {
+
+    public double getCwstyrofoam() {
         return cwstyrofoam;
     }
 
@@ -219,8 +236,8 @@ public class GlobalData {
     public void setKblock(double kblock) {
         this.kblock = kblock;
     }
-	
-	public double getKmineral() {
+
+    public double getKmineral() {
         return kmineral;
     }
 
@@ -228,8 +245,8 @@ public class GlobalData {
     public void setKmineral(double kmineral) {
         this.kmineral = kmineral;
     }
-	
-	public double getKstyrofoam() {
+
+    public double getKstyrofoam() {
         return kstyrofoam;
     }
 
@@ -246,8 +263,8 @@ public class GlobalData {
     public void setDensityblock(double densityblock) {
         this.densityblock = densityblock;
     }
-	
-	public double getDensitymineral() {
+
+    public double getDensitymineral() {
         return densitymineral;
     }
 
@@ -255,14 +272,32 @@ public class GlobalData {
     public void setDensitymineral(double densitymineral) {
         this.densitymineral = densitymineral;
     }
-	
-	public double getDensitystyrofoam() {
+
+    public double getDensitystyrofoam() {
         return densitystyrofoam;
     }
 
     @XmlElement
     public void setDensitystyrofoam(double densitystyrofoam) {
         this.densitystyrofoam = densitystyrofoam;
+    }
+
+    public double getTemperatureleft() {
+        return temperatureleft;
+    }
+
+    @XmlElement
+    public void setTemperatureleft(double temperatureleft) {
+        this.temperatureleft = temperatureleft;
+    }
+
+    public double getTemperatureright() {
+        return temperatureright;
+    }
+
+    @XmlElement
+    public void setTemperatureright(double temperatureright) {
+        this.temperatureright = temperatureright;
     }
 
     public int getNe() {
